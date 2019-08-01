@@ -23,7 +23,7 @@ td {
   <body>
     <h1>Acme Table Builder</h1>
       <div id='usersTable'>
-        <table>
+        <!-- <table>
           <thead id='tableHead'>
             <tr>
               <th>Name</th>
@@ -35,7 +35,7 @@ td {
           </thead>
           <tbody>
             <tr>
-              <td>Larry</td>
+              <td>BIG LARRY</td>
               <td>CTO</td>
               <td>70000</td>
             </tr>
@@ -55,9 +55,36 @@ td {
               <td>100000</td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
       </div>
     <script>
+      class TableBuilder{
+        constructor(headers, data, selector){
+          this.headers = headers;
+          this.data = data;
+          this.selector = selector;
+        }
+        init(){
+          this.render();
+        }
+
+        render(){
+
+          const htmlText = `<table><thead>
+                            <th>
+                            ${this.headers.map(header => `<th>${header.title}</th>`).join('')}
+                            </th>
+                            </thead>
+                            <tbody>
+                            ${this.data}
+
+                            </tbody></table>`;
+
+        document.querySelector(this.selector).innerHTML = htmlText;
+        };
+
+      };
+
         const usersTable = new TableBuilder(
       [
         {
@@ -100,6 +127,10 @@ td {
       '#usersTable'//id of DOM element
     );
     usersTable.init();
+
+
+
+
     </script>
   </body>
 </html>
